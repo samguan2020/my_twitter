@@ -15,8 +15,8 @@ if ! [ -e /vagrant/mysql-apt-config_0.8.15-1_all.deb ]; then
 fi
 
 sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
-sudo DEBIAN_FRONTEND=noninteractivate apt-get install -y mysql-server
-sudo apt-get install -y libmysqlclient-dev
+sudo DEBIAN_FRONTEND=noninteractivate apt-get install -y -q mysql-server
+sudo apt-get install -y -q libmysqlclient-dev
 
 if [ ! -f "/usr/bin/pip" ]; then
   sudo apt-get install -y python3-pip
