@@ -1,6 +1,6 @@
 from friendships.models import Friendship
 from rest_framework.test import APIClient
-from testings.testcases import TestCase
+from testing.testcases import TestCase
 
 
 FOLLOW_URL = '/api/friendships/{}/follow/'
@@ -12,8 +12,6 @@ FOLLOWINGS_URL = '/api/friendships/{}/followings/'
 class FriendshipApiTests(TestCase):
 
     def setUp(self):
-        self.anonymous_client = APIClient()
-
         self.linghu = self.create_user('linghu')
         self.linghu_client = APIClient()
         self.linghu_client.force_authenticate(self.linghu)

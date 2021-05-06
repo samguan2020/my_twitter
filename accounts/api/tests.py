@@ -1,4 +1,4 @@
-from testings.testcases import TestCase
+from testing.testcases import TestCase
 from rest_framework.test import APIClient
 from django.contrib.auth.models import User
 

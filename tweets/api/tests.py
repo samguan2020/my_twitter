@@ -1,5 +1,5 @@
 from rest_framework.test import APIClient
-from testings.testcases import TestCase
+from testing.testcases import TestCase
 from tweets.models import Tweet
 
 
@@ -11,8 +11,6 @@ TWEET_CREATE_API = '/api/tweets/'
 class TweetApiTests(TestCase):
 
     def setUp(self):
-        self.anonymous_client = APIClient()
-
         self.user1 = self.create_user('user1', 'user1@jiuzhang.com')
         self.tweets1 = [
             self.create_tweet(self.user1)
