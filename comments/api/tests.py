@@ -136,3 +136,4 @@ class CommentApiTests(TestCase):
             'user_id': self.linghu.id,
         })
         self.assertEqual(len(response.data['comments']), 2)
+
