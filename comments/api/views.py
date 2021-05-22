@@ -53,7 +53,11 @@ class CommentViewSet(viewsets.GenericViewSet):
         # tweet_id = request.query_params['tweet_id']
         # comments = Comment.objects.filter(tweet_id=tweet_id)
 
-        serializer = CommentSerializer(comments, many=True)
+        serializer = CommentSerializer(
+            comments,
+            context={'request':request},
+            many=True,
+        )
         return Response(
             {'comments': serializer.data},
             status=status.HTTP_200_OK,
@@ -77,7 +81,7 @@ class CommentViewSet(viewsets.GenericViewSet):
         # save 方法会触发 serializer 里的 create 方法，点进 save 的具体实现里可以看到
         comment = serializer.save()
         return Response(
-            CommentSerializer(comment).data,
+            CommentSerializer(comment,context={'request':request}).data,
             status=status.HTTP_201_CREATED,
         )
 
@@ -96,9 +100,10 @@ class CommentViewSet(viewsets.GenericViewSet):
         # save 是根据 instance 参数有没有传来决定是触发 create 还是 update
         comment = serializer.save()
         return Response(
-            CommentSerializer(comment).data,
+            CommentSerializer(comment, context={'request': request}).data,
             status=status.HTTP_200_OK,
         )
+
     def destroy(self, request, *args, **kwargs):
         comment = self.get_object()
         comment.delete()
