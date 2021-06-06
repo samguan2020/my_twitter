@@ -5,6 +5,7 @@ __pycache__/
 .vagrant
 .idea
 .pycharm_helpers
+media/
 
 # C extensions
 *.so
