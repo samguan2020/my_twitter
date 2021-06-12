@@ -15,6 +15,7 @@ class Tweet(models.Model):
     )
     content = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
+    # retweet_from = models.ForeignKey('Tweet', null = True)
 
     class Meta:
         index_together = (('user', 'created_at'),)
