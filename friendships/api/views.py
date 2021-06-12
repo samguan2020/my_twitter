@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from friendships.api.paginations import FriendshipPagination
 from friendships.api.serializers import (
     FollowerSerializer,
