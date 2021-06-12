@@ -1,5 +1,13 @@
 from django.contrib.auth.models import User
+<<<<<<< Updated upstream
 from utils.paginations import FriendshipPagination
+=======
+<<<<<<< Updated upstream
+from friendships.api.paginations import FriendshipPagination
+=======
+from utils.paginations import FriendshipPagination
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 from friendships.api.serializers import (
     FollowerSerializer,
     FollowingSerializer,
