@@ -1,12 +1,4 @@
-<<<<<<< Updated upstream
-from utils.paginations import FriendshipPagination
-=======
-<<<<<<< Updated upstream
 from friendships.api.paginations import FriendshipPagination
-=======
-from utils.paginations import FriendshipPagination
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 from friendships.models import Friendship
 from rest_framework.test import APIClient
 from testing.testcases import TestCase
