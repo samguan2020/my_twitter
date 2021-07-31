@@ -28,18 +28,21 @@ class TweetViewSet(viewsets.GenericViewSet):
         return [IsAuthenticated()]
 
     @required_params(params=['user_id'])
-    def list(self, request):
-        # GET request.query_params
-        # POST request.data
-
-        # if 'user_id' not in request.query_params:
-        #     return Response('missing user_id', status=400)
-
+    def list(self, request, *args, **kwargs):
         user_id = request.query_params['user_id']
-        tweets = TweetService.get_cached_tweets(user_id=request.query_params['user_id'])
-        tweets = self.paginate_queryset(tweets)
+        cached_tweets = TweetService.get_cached_tweets(user_id)
+        page = self.paginator.paginate_cached_list(cached_tweets, request)
+        if page is None:
+            # 这句查询会被翻译为
+            # select * from twitter_tweets
+            # where user_id = xxx
+            # order by created_at desc
+            # 这句 SQL 查询会用到 user 和 created_at 的联合索引
+            # 单纯的 user 索引是不够的
+            queryset = Tweet.objects.filter(user_id=user_id).order_by('-created_at')
+            page = self.paginate_queryset(queryset)
         serializer = TweetSerializer(
-            tweets,
+            page,
             context={'request': request},
             many=True,
         )
