@@ -17,6 +17,10 @@ class TweetViewSet(viewsets.GenericViewSet):
     serializer_class = TweetSerializer
     pagination_class = EndlessPagination
 
+    # POST /api/tweets/ -> create
+    # GET /api/tweets/?tweet_id=1 -> list
+    # GET /api/tweets/1/ -> retrieve
+
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
             return [AllowAny()]
