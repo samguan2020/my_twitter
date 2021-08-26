@@ -1,11 +1,20 @@
+.idea
+.pycharm_helpers
+.vagrant
+.DS_Store
+Vagrantfile
+media/
+hbase-2.4.5-bin.tar.gz
+hbase-2.4.5/
+jdk-8u301-linux-x64.tar.gz
+thrift-0.14.2.tar.gz
+thrift-0.14.2/
+*.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-.vagrant
-.idea
-.pycharm_helpers
-media/
 
 # C extensions
 *.so
