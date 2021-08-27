@@ -10,7 +10,7 @@ from newsfeeds.models import NewsFeed
 from rest_framework.test import APIClient
 from tweets.models import Tweet
 from utils.redis_client import RedisClient
-
+from gatekeeper.models import GateKeeper
 
 class TestCase(DjangoTestCase):
     hbase_tables_created = False
@@ -31,8 +31,9 @@ class TestCase(DjangoTestCase):
         for hbase_model_class in HBaseModel.__subclasses__():
             hbase_model_class.drop_table()
     def clear_cache(self):
-        RedisClient.clear()
         caches['testing'].clear()
+        RedisClient.clear()
+        # GateKeeper.set_kv('switch_friendship_to_hbase', 'percent', 100)
 
     @property
     def anonymous_client(self):
