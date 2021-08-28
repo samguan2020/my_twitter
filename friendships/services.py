@@ -6,8 +6,6 @@ from twitter.cache import FOLLOWINGS_PATTERN
 
 import time
 
-import time
-
 cache = caches['testing'] if settings.TESTING else caches['default']
 
 
