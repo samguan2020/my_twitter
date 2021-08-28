@@ -1,9 +1,13 @@
 from django.conf import settings
 from django.core.cache import caches
+from friendships.hbase_models import HBaseFollowing, HBaseFollower
 from friendships.models import Friendship
+from gatekeeper.models import GateKeeper
 from twitter.cache import FOLLOWINGS_PATTERN
 from gatekeeper.models import GateKeeper
 from friendships.hbase_models import HBaseFollowing, HBaseFollower
+
+import time
 
 import time
 
@@ -42,12 +46,14 @@ class FriendshipService(object):
     def follow(cls, from_user_id, to_user_id):
         if from_user_id == to_user_id:
             return None
+
         if not GateKeeper.is_switch_on('switch_friendship_to_hbase'):
             # create data in mysql
             return Friendship.objects.create(
                 from_user_id=from_user_id,
                 to_user_id=to_user_id,
             )
+
         # create data in hbase
         now = int(time.time() * 1000000)
         HBaseFollower.create(
