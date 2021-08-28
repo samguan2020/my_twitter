@@ -1,3 +1,10 @@
+<<<<<<< Updated upstream
+=======
+from django.test import TestCase as DjangoTestCase
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
+from django.core.cache import caches
+>>>>>>> Stashed changes
 from comments.models import Comment
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
@@ -35,6 +42,9 @@ class TestCase(DjangoTestCase):
     def clear_cache(self):
         caches['testing'].clear()
         GateKeeper.set_kv('switch_friendship_to_hbase', 'percent', 100)
+
+    def clear_cache(self):
+        caches['testing'].clear()
 
     @property
     def anonymous_client(self):
