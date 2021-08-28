@@ -34,7 +34,7 @@ class TestCase(DjangoTestCase):
 
     def clear_cache(self):
         caches['testing'].clear()
-        GateKeeper.set_kv('switch_friendship_to_hbase', 'percent', 100)
+        # GateKeeper.set_kv('switch_friendship_to_hbase', 'percent', 100)
 
     @property
     def anonymous_client(self):

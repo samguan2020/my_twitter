@@ -1,9 +1,14 @@
+"""
+Deprecated
+use newsfeeds.hbase_models.HBaseNewsFeed instead
+"""
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from newsfeeds.listeners import push_newsfeed_to_cache
 from tweets.models import Tweet
 from utils.memcached_helper import MemcachedHelper
+
 
 class NewsFeed(models.Model):
     # 注意这个 user 不是存储谁发了这条 tweet，而是谁可以看到这条 tweet
@@ -14,7 +19,7 @@ class NewsFeed(models.Model):
     class Meta:
         index_together = (('user', 'created_at'),)
         unique_together = (('user', 'tweet'),)
-        ordering = ('-created_at',)
+        ordering = ('user', '-created_at',)
 
     def __str__(self):
         return f'{self.created_at} inbox of {self.user}: {self.tweet}'
