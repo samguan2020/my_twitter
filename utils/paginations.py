@@ -34,7 +34,7 @@ class EndlessPagination(BasePagination):
                 if obj.created_at < created_at__lt:
                     break
             else:
-                # 没找到任何满足条件的 objects, 返回空数组
+                # 没找到任何满足条件的 objects, 返回空数组paginate_queryset
                 # 注意这个 else 对应的是 for，参见 python 的 for else 语法
                 reverse_ordered_list = []
         self.has_next_page = len(reverse_ordered_list) > index + self.page_size
