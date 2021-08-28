@@ -17,9 +17,6 @@ class BaseFriendshipSerializer(serializers.Serializer):
     def create(self, validated_data):
         pass
 
-    def create(self, validated_data):
-        pass
-
     def get_user_id(self, obj):
         raise NotImplementedError
 
@@ -45,6 +42,16 @@ class BaseFriendshipSerializer(serializers.Serializer):
         return obj.created_at
 
 
+class FollowingSerializer(BaseFriendshipSerializer):
+    def get_user_id(self, obj):
+        return obj.to_user_id
+
+
+class FollowerSerializer(BaseFriendshipSerializer):
+    def get_user_id(self, obj):
+        return obj.from_user_id
+
+
 class FriendshipSerializerForCreate(serializers.ModelSerializer):
     from_user_id = serializers.IntegerField()
     to_user_id = serializers.IntegerField()
@@ -67,14 +74,3 @@ class FriendshipSerializerForCreate(serializers.ModelSerializer):
             from_user_id=from_user_id,
             to_user_id=to_user_id,
         )
-
-
-class FollowerSerializer(BaseFriendshipSerializer):
-    def get_user_id(self, obj):
-        return obj.from_user_id
-
-
-class FollowingSerializer(BaseFriendshipSerializer):
-    def get_user_id(self, obj):
-        return obj.to_user_id
-

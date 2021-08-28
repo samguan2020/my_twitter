@@ -33,3 +33,7 @@ class UserService:
     def invalidate_profile(cls, user_id):
         key = USER_PROFILE_PATTERN.format(user_id=user_id)
         cache.delete(key)
+
+    @classmethod
+    def get_user_by_id(cls, user_id):
+        return MemcachedHelper.get_object_through_cache(User, user_id)
