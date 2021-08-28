@@ -5,8 +5,7 @@ from friendships.api.serializers import (
     FollowingSerializer,
     FriendshipSerializerForCreate,
 )
-from friendships.hbase_models import HBaseFollowing, HBaseFollower
-from friendships.models import Friendship
+from friendships.models import HBaseFollowing, HBaseFollower, Friendship
 from friendships.services import FriendshipService
 <<<<<<< Updated upstream
 from gatekeeper.models import GateKeeper
