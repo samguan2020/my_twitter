@@ -184,10 +184,8 @@ AWS_S3_REGION_NAME = 'us-east-2'
 MEDIA_ROOT = 'media/'
 
 # https://docs.djangoproject.com/en/3.1/topics/cache/
-<<<<<<< Updated upstream
-=======
+
 # sudo apt-get install memcached
->>>>>>> Stashed changes
 # use `pip install python-memcached`
 # DO NOT pip install memcache or django-memcached
 CACHES = {
@@ -202,7 +200,7 @@ CACHES = {
         'TIMEOUT': 86400,
         'KEY_PREFIX': 'testing',
     },
-<<<<<<< Updated upstream
+
     'ratelimit': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': '127.0.0.1:11211',
@@ -236,11 +234,6 @@ RATELIMIT_USE_CACHE = 'ratelimit'
 RATELIMIT_CACHE_PREFIX = 'rl:'   # 避免和其他的 key 冲突
 RATELIMIT_ENABLE = not TESTING  # 在某些环境下，比如内部测试等环境下，一般也会关掉
 
-
-=======
-}
-
->>>>>>> Stashed changes
 try:
     from .local_settings import *
 except:
