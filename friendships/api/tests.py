@@ -12,11 +12,7 @@ FOLLOWINGS_URL = '/api/friendships/{}/followings/'
 class FriendshipApiTests(TestCase):
 
     def setUp(self):
-<<<<<<< Updated upstream
         super(FriendshipApiTests, self).setUp()
-=======
-        self.clear_cache()
->>>>>>> Stashed changes
         self.linghu = self.create_user('linghu')
         self.linghu_client = APIClient()
         self.linghu_client.force_authenticate(self.linghu)
@@ -56,11 +52,7 @@ class FriendshipApiTests(TestCase):
 
         # follow 成功
         response = self.dongxie_client.post(url)
-<<<<<<< Updated upstream
         # self.assertEqual(response.status_code, 201)
-=======
-        self.assertEqual(response.status_code, 201)
->>>>>>> Stashed changes
         # self.assertEqual('created_at' in response.data, True)
         # self.assertEqual('user' in response.data, True)
         # self.assertEqual(response.data['user']['id'], self.linghu.id)

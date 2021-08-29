@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-=======
-from django.test import TestCase as DjangoTestCase
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import User
-from django.core.cache import caches
->>>>>>> Stashed changes
 from comments.models import Comment
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
@@ -17,8 +10,6 @@ from likes.models import Like
 from newsfeeds.models import NewsFeed
 from rest_framework.test import APIClient
 from tweets.models import Tweet
-from utils.redis_client import RedisClient
-from gatekeeper.models import GateKeeper
 
 class TestCase(DjangoTestCase):
     hbase_tables_created = False
@@ -41,7 +32,8 @@ class TestCase(DjangoTestCase):
 
     def clear_cache(self):
         caches['testing'].clear()
-        # GateKeeper.set_kv('switch_friendship_to_hbase', 'percent', 100)
+        RedisClient.clear()
+        GateKeeper.set_kv('switch_friendship_to_hbase', 'percent', 100)
 
     def clear_cache(self):
         caches['testing'].clear()
